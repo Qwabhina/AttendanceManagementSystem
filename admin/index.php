@@ -217,8 +217,6 @@ $totAttendance = mysqli_num_rows($query1);
                                   <div class="text-xs font-weight-bold text-uppercase mb-1">Terms</div>
                                   <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $termonly;?></div>
                                   <div class="mt-2 mb-0 text-muted text-xs">
-                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span>Since last years</span> -->
                                   </div>
                                 </div>
                                 <div class="col-auto">
@@ -228,14 +226,6 @@ $totAttendance = mysqli_num_rows($query1);
                             </div>
                           </div>
                         </div>
-          <!--Row-->
-
-          <!-- <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
-                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-            </div>
-          </div> -->
 
         </div>
         <!---Container Fluid-->
@@ -255,8 +245,8 @@ $totAttendance = mysqli_num_rows($query1);
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/ruang-admin.min.js"></script>
-  <script src="../vendor/chart.js/Chart.min.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>  
+  <!-- <script src="../vendor/chart.js/Chart.min.js"></script> -->
+  <!-- <script src="js/demo/chart-area-demo.js"></script>   -->
 </body>
 
 </html>
