@@ -9,7 +9,7 @@ include '../Includes/dbcon.php';
 
         echo '
         <select required name="classArmId" class="form-control mb-3">';
-        echo'<option value="">--Select Class Arm--</option>';
+        echo'<option value="">--Select Class Stream--</option>';
         while ($row = mysqli_fetch_array($queryss)) {
         echo'<option value="'.$row['Id'].'" >'.$row['classArmName'].'</option>';
         }

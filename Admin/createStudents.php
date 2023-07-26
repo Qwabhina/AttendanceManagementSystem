@@ -223,7 +223,7 @@ if(isset($_POST['save'])){
                             ?>  
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Class Arm<span class="text-danger ml-2">*</span></label>
+                        <label class="form-control-label">Class Stream<span class="text-danger ml-2">*</span></label>
                             <?php
                                 echo"<div id='txtHint'></div>";
                             ?>
@@ -263,7 +263,7 @@ if(isset($_POST['save'])){
                         <th>Other Name</th>
                         <th>Admission No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Class Stream</th>
                         <th>Date Created</th>
                          <th>Edit</th>
                         <th>Delete</th>

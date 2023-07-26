@@ -26,7 +26,7 @@ include '../Includes/session.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/attnlg.jpg" rel="icon">
+  <link href="img/logo/attnlg.png" rel="icon">
   <title>Dashboard</title>
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -112,7 +112,7 @@ $classArms = mysqli_num_rows($query1);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Class Arms</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Class Streams</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $classArms;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>

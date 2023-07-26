@@ -101,7 +101,7 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                         <th>Other Name</th>
                         <th>Admission No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Class Stream</th>
                       </tr>
                     </thead>
                     

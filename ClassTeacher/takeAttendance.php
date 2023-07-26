@@ -179,7 +179,7 @@ if(isset($_POST['save'])){
                         <th>Other Name</th>
                         <th>Admission No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Class Stream</th>
                         <th>Check</th>
                       </tr>
                     </thead>

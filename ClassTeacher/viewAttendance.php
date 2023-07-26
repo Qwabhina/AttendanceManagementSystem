@@ -58,11 +58,11 @@ include '../Includes/session.php';
                     <div class="form-group row mb-3">
                         <div class="col-xl-6">
                         <label class="form-control-label">Select Date<span class="text-danger ml-2">*</span></label>
-                            <input type="date" class="form-control" name="dateTaken" id="exampleInputFirstName" placeholder="Class Arm Name">
+                            <input type="date" class="form-control" name="dateTaken" id="exampleInputFirstName" placeholder="Class Stream Name">
                         </div>
                         <!-- <div class="col-xl-6">
-                        <label class="form-control-label">Class Arm Name<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" name="classArmName" value="<?php echo $row['classArmName'];?>" id="exampleInputFirstName" placeholder="Class Arm Name">
+                        <label class="form-control-label">Class Stream Name<span class="text-danger ml-2">*</span></label>
+                      <input type="text" class="form-control" name="classArmName" value="<?php echo $row['classArmName'];?>" id="exampleInputFirstName" placeholder="Class Stream Name">
                         </div> -->
                     </div>
                     <button type="submit" name="view" class="btn btn-primary">View Attendance</button>
@@ -87,7 +87,7 @@ include '../Includes/session.php';
                         <th>Other Name</th>
                         <th>Admission No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Class Stream</th>
                         <th>Session</th>
                         <th>Term</th>
                         <th>Status</th>

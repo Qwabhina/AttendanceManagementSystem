@@ -13,7 +13,7 @@ include '../Includes/session.php';
             <th>Other Name</th>
             <th>Admission No</th>
             <th>Class</th>
-            <th>Class Arm</th>
+            <th>Class Stream</th>
             <th>Session</th>
             <th>Term</th>
             <th>Status</th>
