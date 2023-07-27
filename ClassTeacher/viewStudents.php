@@ -96,20 +96,15 @@ $rrw = $rs->fetch_assoc();
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Other Name</th>
+                                                        <th>Students Full Name</th>
                                                         <th>Admission No</th>
-                                                        <th>Class</th>
-                                                        <th>Class Stream</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
 
                                                     <?php
-                                                    $query = "SELECT tblstudents.Id,tblclass.className,tblclassarms.classArmName,tblclassarms.Id AS classArmId,tblstudents.firstName,
-                      tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber,tblstudents.dateCreated
+                                                    $query = "SELECT tblstudents.Id, CONCAT(tblstudents.firstName, ' ',tblstudents.lastName, ' ', tblstudents.otherName) AS stdName, tblstudents.admissionNumber,tblstudents.dateCreated
                       FROM tblstudents
                       INNER JOIN tblclass ON tblclass.Id = tblstudents.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblstudents.classArmId
@@ -124,12 +119,8 @@ $rrw = $rs->fetch_assoc();
                                                             echo "
                               <tr>
                                 <td>" . $sn . "</td>
-                                <td>" . $rows['firstName'] . "</td>
-                                <td>" . $rows['lastName'] . "</td>
-                                <td>" . $rows['otherName'] . "</td>
+                                <td>" . $rows['stdName'] . "</td>
                                 <td>" . $rows['admissionNumber'] . "</td>
-                                <td>" . $rows['className'] . "</td>
-                                <td>" . $rows['classArmName'] . "</td>
                               </tr>";
                                                         }
                                                     } else {
@@ -147,18 +138,6 @@ $rrw = $rs->fetch_assoc();
                                 </div>
                             </div>
                         </div>
-                        <!--Row-->
-
-                        <!-- Documentation Link -->
-                        <!-- <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>For more documentations you can visit<a href="https://getbootstrap.com/docs/4.3/components/forms/"
-                  target="_blank">
-                  bootstrap forms documentations.</a> and <a
-                  href="https://getbootstrap.com/docs/4.3/components/input-group/" target="_blank">bootstrap input
-                  groups documentations</a></p>
-            </div>
-          </div> -->
 
                     </div>
                     <!---Container Fluid-->

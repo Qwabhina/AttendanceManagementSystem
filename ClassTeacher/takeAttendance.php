@@ -178,12 +178,8 @@ if(isset($_POST['save'])){
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>First Name</th>
-                                                            <th>Last Name</th>
-                                                            <th>Other Name</th>
+                                                            <th>Students Full Name</th>
                                                             <th>Admission No</th>
-                                                            <th>Class</th>
-                                                            <th>Class Stream</th>
                                                             <th>Check</th>
                                                         </tr>
                                                     </thead>
@@ -191,8 +187,7 @@ if(isset($_POST['save'])){
                                                     <tbody>
 
                                                         <?php
-                      $query = "SELECT tblstudents.Id,tblstudents.admissionNumber,tblclass.className,tblclass.Id As classId,tblclassarms.classArmName,tblclassarms.Id AS classArmId,tblstudents.firstName,
-                      tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber,tblstudents.dateCreated
+                      $query = "SELECT tblstudents.Id,tblstudents.admissionNumber,tblclass.Id As classId,CONCAT(tblstudents.firstName, ' ',tblstudents.lastName, ' ', tblstudents.otherName) AS stdName,tblstudents.admissionNumber,tblstudents.dateCreated
                       FROM tblstudents
                       INNER JOIN tblclass ON tblclass.Id = tblstudents.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblstudents.classArmId
@@ -209,12 +204,8 @@ if(isset($_POST['save'])){
                             echo"
                               <tr>
                                 <td>".$sn."</td>
-                                <td>".$rows['firstName']."</td>
-                                <td>".$rows['lastName']."</td>
-                                <td>".$rows['otherName']."</td>
+                                <td>".$rows['stdName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
-                                <td>".$rows['className']."</td>
-                                <td>".$rows['classArmName']."</td>
                                 <td><input name='check[]' type='checkbox' value=".$rows['admissionNumber']." class='form-control'></td>
                               </tr>";
                               echo "<input name='admissionNo[]' value=".$rows['admissionNumber']." type='hidden' class='form-control'>";

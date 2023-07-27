@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -26,12 +26,12 @@ include '../Includes/session.php';
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
-        <?php include "Includes/sidebar.php";?>
+        <?php include "Includes/sidebar.php"; ?>
         <!-- Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- TopBar -->
-                <?php include "Includes/topbar.php";?>
+                <?php include "Includes/topbar.php"; ?>
                 <!-- Topbar -->
 
                 <!-- Container Fluid-->
@@ -62,10 +62,6 @@ include '../Includes/session.php';
                                                 <input type="date" class="form-control" name="dateTaken"
                                                     id="exampleInputFirstName" placeholder="Class Stream Name">
                                             </div>
-                                            <!-- <div class="col-xl-6">
-                        <label class="form-control-label">Class Stream Name<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" name="classArmName" value="<?php echo $row['classArmName'];?>" id="exampleInputFirstName" placeholder="Class Stream Name">
-                        </div> -->
                                         </div>
                                         <button type="submit" name="view" class="btn btn-primary">View
                                             Attendance</button>
@@ -87,12 +83,8 @@ include '../Includes/session.php';
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Other Name</th>
+                                                        <th>Students Full Name</th>
                                                         <th>Admission No</th>
-                                                        <th>Class</th>
-                                                        <th>Class Stream</th>
                                                         <th>Session</th>
                                                         <th>Term</th>
                                                         <th>Status</th>
@@ -104,13 +96,13 @@ include '../Includes/session.php';
 
                                                     <?php
 
-                    if(isset($_POST['view'])){
+                                                    if (isset($_POST['view'])) {
 
-                      $dateTaken =  $_POST['dateTaken'];
+                                                        $dateTaken =  $_POST['dateTaken'];
 
-                      $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
+                                                        $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
                       tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-                      tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+                      CONCAT(tblstudents.firstName, ' ',tblstudents.lastName, ' ', tblstudents.otherName) AS stdName,tblstudents.admissionNumber
                       FROM tblattendance
                       INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -118,41 +110,40 @@ include '../Includes/session.php';
                       INNER JOIN tblterm ON tblterm.Id = tblsessionterm.termId
                       INNER JOIN tblstudents ON tblstudents.admissionNumber = tblattendance.admissionNo
                       where tblattendance.dateTimeTaken = '$dateTaken' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'";
-                      $rs = $conn->query($query);
-                      $num = $rs->num_rows;
-                      $sn=0;
-                      $status="";
-                      if($num > 0)
-                      { 
-                        while ($rows = $rs->fetch_assoc())
-                          {
-                              if($rows['status'] == '1'){$status = "Present"; $colour="#00FF00";}else{$status = "Absent";$colour="#FF0000";}
-                             $sn = $sn + 1;
-                            echo"
+                                                        $rs = $conn->query($query);
+                                                        $num = $rs->num_rows;
+                                                        $sn = 0;
+                                                        $status = "";
+                                                        if ($num > 0) {
+                                                            while ($rows = $rs->fetch_assoc()) {
+                                                                if ($rows['status'] == '1') {
+                                                                    $status = "Present";
+                                                                    $colour = "#00FF00";
+                                                                } else {
+                                                                    $status = "Absent";
+                                                                    $colour = "#FF0000";
+                                                                }
+                                                                $sn = $sn + 1;
+                                                                echo "
                               <tr>
-                                <td>".$sn."</td>
-                                 <td>".$rows['firstName']."</td>
-                                <td>".$rows['lastName']."</td>
-                                <td>".$rows['otherName']."</td>
-                                <td>".$rows['admissionNumber']."</td>
-                                <td>".$rows['className']."</td>
-                                <td>".$rows['classArmName']."</td>
-                                <td>".$rows['sessionName']."</td>
-                                <td>".$rows['termName']."</td>
-                                <td style='background-color:".$colour."'>".$status."</td>
-                                <td>".$rows['dateTimeTaken']."</td>
+                                <td>" . $sn . "</td>
+                                 <td>" . $rows['stdName'] . "</td>
+                                <td>" . $rows['admissionNumber'] . "</td>
+                                
+                                <td>" . $rows['sessionName'] . "</td>
+                                <td>" . $rows['termName'] . "</td>
+                                <td style='background-color:" . $colour . "'>" . $status . "</td>
+                                <td>" . $rows['dateTimeTaken'] . "</td>
                               </tr>";
-                          }
-                      }
-                      else
-                      {
-                           echo   
-                           "<div class='alert alert-danger' role='alert'>
+                                                            }
+                                                        } else {
+                                                            echo
+                                                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
-                      }
-                    }
-                      ?>
+                                                        }
+                                                    }
+                                                    ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -160,24 +151,12 @@ include '../Includes/session.php';
                                 </div>
                             </div>
                         </div>
-                        <!--Row-->
-
-                        <!-- Documentation Link -->
-                        <!-- <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>For more documentations you can visit<a href="https://getbootstrap.com/docs/4.3/components/forms/"
-                  target="_blank">
-                  bootstrap forms documentations.</a> and <a
-                  href="https://getbootstrap.com/docs/4.3/components/input-group/" target="_blank">bootstrap input
-                  groups documentations</a></p>
-            </div>
-          </div> -->
 
                     </div>
                     <!---Container Fluid-->
                 </div>
                 <!-- Footer -->
-                <?php include "Includes/footer.php";?>
+                <?php include "Includes/footer.php"; ?>
                 <!-- Footer -->
             </div>
         </div>

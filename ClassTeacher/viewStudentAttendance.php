@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -23,27 +23,27 @@ include '../Includes/session.php';
     <link href="css/ruang-admin.min.css" rel="stylesheet">
 
     <script>
-    function typeDropDown(str) {
-        if (str == "") {
-            document.getElementById("txtHint").innerHTML = "";
-            return;
-        } else {
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
+        function typeDropDown(str) {
+            if (str == "") {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
             } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("txtHint").innerHTML = this.responseText;
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-            };
-            xmlhttp.open("GET", "ajaxCallTypes.php?tid=" + str, true);
-            xmlhttp.send();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "ajaxCallTypes.php?tid=" + str, true);
+                xmlhttp.send();
+            }
         }
-    }
     </script>
 
 </head>
@@ -51,12 +51,12 @@ include '../Includes/session.php';
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
-        <?php include "Includes/sidebar.php";?>
+        <?php include "Includes/sidebar.php"; ?>
         <!-- Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- TopBar -->
-                <?php include "Includes/topbar.php";?>
+                <?php include "Includes/topbar.php"; ?>
                 <!-- Topbar -->
 
                 <!-- Container Fluid-->
@@ -73,8 +73,7 @@ include '../Includes/session.php';
                         <div class="col-lg-12">
                             <!-- Form Basic -->
                             <div class="card mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">View Student Attendance</h6>
                                     <?php echo $statusMsg; ?>
                                 </div>
@@ -82,27 +81,24 @@ include '../Includes/session.php';
                                     <form method="post">
                                         <div class="form-group row mb-3">
                                             <div class="col-xl-6">
-                                                <label class="form-control-label">Select Student<span
-                                                        class="text-danger ml-2">*</span></label>
+                                                <label class="form-control-label">Select Student<span class="text-danger ml-2">*</span></label>
                                                 <?php
-                        $qry= "SELECT * FROM tblstudents where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]' ORDER BY firstName ASC";
-                        $result = $conn->query($qry);
-                        $num = $result->num_rows;		
-                        if ($num > 0){
-                          echo ' <select required name="admissionNumber" class="form-control mb-3">';
-                          echo'<option value="">--Select Student--</option>';
-                          while ($rows = $result->fetch_assoc()){
-                          echo'<option value="'.$rows['admissionNumber'].'" >'.$rows['firstName'].' '.$rows['lastName'].'</option>';
-                              }
-                                  echo '</select>';
-                              }
-                            ?>
+                                                $qry = "SELECT * FROM tblstudents where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]' ORDER BY firstName ASC";
+                                                $result = $conn->query($qry);
+                                                $num = $result->num_rows;
+                                                if ($num > 0) {
+                                                    echo ' <select required name="admissionNumber" class="form-control mb-3">';
+                                                    echo '<option value="">--Select Student--</option>';
+                                                    while ($rows = $result->fetch_assoc()) {
+                                                        echo '<option value="' . $rows['admissionNumber'] . '" >' . $rows['firstName'] . ' ' . $rows['lastName'] . '</option>';
+                                                    }
+                                                    echo '</select>';
+                                                }
+                                                ?>
                                             </div>
                                             <div class="col-xl-6">
-                                                <label class="form-control-label">Type<span
-                                                        class="text-danger ml-2">*</span></label>
-                                                <select required name="type" onchange="typeDropDown(this.value)"
-                                                    class="form-control mb-3">
+                                                <label class="form-control-label">Type<span class="text-danger ml-2">*</span></label>
+                                                <select required name="type" onchange="typeDropDown(this.value)" class="form-control mb-3">
                                                     <option value="">--Select--</option>
                                                     <option value="1">All</option>
                                                     <option value="2">By Single Date</option>
@@ -111,8 +107,8 @@ include '../Includes/session.php';
                                             </div>
                                         </div>
                                         <?php
-                        echo"<div id='txtHint'></div>";
-                      ?>
+                                        echo "<div id='txtHint'></div>";
+                                        ?>
                                         <!-- <div class="form-group row mb-3">
                         <div class="col-xl-6">
                         <label class="form-control-label">Select Student<span class="text-danger ml-2">*</span></label>
@@ -133,22 +129,16 @@ include '../Includes/session.php';
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card mb-4">
-                                        <div
-                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                             <h6 class="m-0 font-weight-bold text-primary">Class Attendance</h6>
                                         </div>
                                         <div class="table-responsive p-3">
-                                            <table class="table align-items-center table-flush table-hover"
-                                                id="dataTableHover">
+                                            <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Other Name</th>
+                                                        <th>Students Full Name</th>
                                                         <th>Admission No</th>
-                                                        <th>Class</th>
-                                                        <th>Class Stream</th>
                                                         <th>Session</th>
                                                         <th>Term</th>
                                                         <th>Status</th>
@@ -160,14 +150,14 @@ include '../Includes/session.php';
 
                                                     <?php
 
-                    if(isset($_POST['view'])){
+                                                    if (isset($_POST['view'])) {
 
-                       $admissionNumber =  $_POST['admissionNumber'];
-                       $type =  $_POST['type'];
+                                                        $admissionNumber =  $_POST['admissionNumber'];
+                                                        $type =  $_POST['type'];
 
-                       if($type == "1"){ //All Attendance
+                                                        if ($type == "1") { //All Attendance
 
-                        $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
+                                                            $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
                         tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
                         tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
                         FROM tblattendance
@@ -177,15 +167,13 @@ include '../Includes/session.php';
                         INNER JOIN tblterm ON tblterm.Id = tblsessionterm.termId
                         INNER JOIN tblstudents ON tblstudents.admissionNumber = tblattendance.admissionNo
                         where tblattendance.admissionNo = '$admissionNumber' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'";
+                                                        }
+                                                        if ($type == "2") { //Single Date Attendance
 
-                       }
-                       if($type == "2"){ //Single Date Attendance
+                                                            $singleDate =  $_POST['singleDate'];
 
-                        $singleDate =  $_POST['singleDate'];
-
-                         $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
-                        tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-                        tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+                                                            $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
+                        CONCAT(tblstudents.firstName, ' ',tblstudents.lastName, ' ', tblstudents.otherName) AS stdName,tblstudents.admissionNumber
                         FROM tblattendance
                         INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
                         INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -193,17 +181,14 @@ include '../Includes/session.php';
                         INNER JOIN tblterm ON tblterm.Id = tblsessionterm.termId
                         INNER JOIN tblstudents ON tblstudents.admissionNumber = tblattendance.admissionNo
                         where tblattendance.dateTimeTaken = '$singleDate' and tblattendance.admissionNo = '$admissionNumber' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'";
-                        
+                                                        }
+                                                        if ($type == "3") { //Date Range Attendance
 
-                       }
-                       if($type == "3"){ //Date Range Attendance
+                                                            $fromDate =  $_POST['fromDate'];
+                                                            $toDate =  $_POST['toDate'];
 
-                         $fromDate =  $_POST['fromDate'];
-                         $toDate =  $_POST['toDate'];
-
-                         $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
-                        tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-                        tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+                                                            $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken, tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
+                        CONCAT(tblstudents.firstName, ' ',tblstudents.lastName, ' ', tblstudents.otherName) AS stdName,tblstudents.admissionNumber
                         FROM tblattendance
                         INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
                         INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -211,44 +196,41 @@ include '../Includes/session.php';
                         INNER JOIN tblterm ON tblterm.Id = tblsessionterm.termId
                         INNER JOIN tblstudents ON tblstudents.admissionNumber = tblattendance.admissionNo
                         where tblattendance.dateTimeTaken between '$fromDate' and '$toDate' and tblattendance.admissionNo = '$admissionNumber' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'";
-                        
-                       }
+                                                        }
 
-                      $rs = $conn->query($query);
-                      $num = $rs->num_rows;
-                      $sn=0;
-                      $status="";
-                      if($num > 0)
-                      { 
-                        while ($rows = $rs->fetch_assoc())
-                          {
-                              if($rows['status'] == '1'){$status = "Present"; $colour="#00FF00";}else{$status = "Absent";$colour="#FF0000";}
-                             $sn = $sn + 1;
-                            echo"
+                                                        $rs = $conn->query($query);
+                                                        $num = $rs->num_rows;
+                                                        $sn = 0;
+                                                        $status = "";
+                                                        if ($num > 0) {
+                                                            while ($rows = $rs->fetch_assoc()) {
+                                                                if ($rows['status'] == '1') {
+                                                                    $status = "Present";
+                                                                    $colour = "#00FF00";
+                                                                } else {
+                                                                    $status = "Absent";
+                                                                    $colour = "#FF0000";
+                                                                }
+                                                                $sn = $sn + 1;
+                                                                echo "
                               <tr>
-                                <td>".$sn."</td>
-                                 <td>".$rows['firstName']."</td>
-                                <td>".$rows['lastName']."</td>
-                                <td>".$rows['otherName']."</td>
-                                <td>".$rows['admissionNumber']."</td>
-                                <td>".$rows['className']."</td>
-                                <td>".$rows['classArmName']."</td>
-                                <td>".$rows['sessionName']."</td>
-                                <td>".$rows['termName']."</td>
-                                <td style='background-color:".$colour."'>".$status."</td>
-                                <td>".$rows['dateTimeTaken']."</td>
+                                <td>" . $sn . "</td>
+                                 <td>" . $rows['stdName'] . "</td>
+                                <td>" . $rows['admissionNumber'] . "</td>
+                                <td>" . $rows['sessionName'] . "</td>
+                                <td>" . $rows['termName'] . "</td>
+                                <td style='background-color:" . $colour . "'>" . $status . "</td>
+                                <td>" . $rows['dateTimeTaken'] . "</td>
                               </tr>";
-                          }
-                      }
-                      else
-                      {
-                           echo   
-                           "<div class='alert alert-danger' role='alert'>
+                                                            }
+                                                        } else {
+                                                            echo
+                                                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
-                      }
-                    }
-                      ?>
+                                                        }
+                                                    }
+                                                    ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -273,7 +255,7 @@ include '../Includes/session.php';
                     <!---Container Fluid-->
                 </div>
                 <!-- Footer -->
-                <?php include "Includes/footer.php";?>
+                <?php include "Includes/footer.php"; ?>
                 <!-- Footer -->
             </div>
         </div>
@@ -293,10 +275,10 @@ include '../Includes/session.php';
 
         <!-- Page level custom scripts -->
         <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable(); // ID From dataTable 
-            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-        });
+            $(document).ready(function() {
+                $('#dataTable').DataTable(); // ID From dataTable 
+                $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+            });
         </script>
 </body>
 
