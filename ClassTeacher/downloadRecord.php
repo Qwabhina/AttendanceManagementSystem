@@ -19,9 +19,15 @@ include '../Includes/session.php';
 </head>
 
 <body>
-
+    </h1>
     <table class=" table table-bordered">
-        <thead>
+        <tr>
+            <td colspan="11">
+                <h3 class="h3 mb-0 text-gray-800">Attendance Report for <?php echo $todaysDate = date("m-d-Y"); ?></h3>
+            </td>
+        </tr>
+        <tr></tr>
+        <thead class="thead-dark">
             <tr>
                 <th>#</th>
                 <th>First Name</th>
